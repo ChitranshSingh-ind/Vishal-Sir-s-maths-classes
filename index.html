@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vishal Sir's Maths Classes – Etawah</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --yellow: #FFD93D;
+      --orange: #FF6B35;
+      --blue: #1B4FFF;
+      --navy: #0A1045;
+      --green: #06D6A0;
+      --pink: #FF4D8D;
+      --white: #FFFDF4;
+      --card-bg: #FFFFFF;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--white);
+      color: var(--navy);
+      overflow-x: hidden;
+    }
+
+    /* ── FLOATING MATH SYMBOLS BACKGROUND ── */
+    .math-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .math-bg span {
+      position: absolute;
+      font-size: clamp(1.2rem, 3vw, 2.5rem);
+      font-weight: 800;
+      font-family: 'Baloo 2', cursive;
+      opacity: 0.04;
+      animation: floatUp linear infinite;
+      color: var(--navy);
+    }
+    @keyframes floatUp {
+      0%   { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+      10%  { opacity: 0.06; }
+      90%  { opacity: 0.06; }
+      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--navy);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.9rem 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .nav-logo {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.4rem; font-weight: 800;
+      color: var(--yellow);
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .nav-logo .dot { color: var(--orange); }
+    nav ul {
+      list-style: none;
+      display: flex; gap: 1.8rem;
+    }
+    nav ul a {
+      color: #ffffffcc;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    nav ul a:hover { color: var(--yellow); }
+    .nav-cta {
+      background: var(--yellow);
+      color: var(--navy) !important;
+      padding: 0.4rem 1.1rem;
+      border-radius: 50px;
+    }
+    .nav-cta:hover { background: var(--orange); color: white !important; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; z-index: 1;
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--navy) 0%, #162580 60%, #1B4FFF 100%);
+      display: flex; align-items: center; justify-content: center;
+      padding: 5rem 2rem 3rem;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(255,217,61,0.12) 0%, transparent 60%),
+                  radial-gradient(ellipse at 20% 80%, rgba(6,214,160,0.1) 0%, transparent 50%);
+    }
+    .hero-inner {
+      max-width: 900px;
+      text-align: center;
+      position: relative; z-index: 2;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(255,217,61,0.15);
+      border: 2px solid var(--yellow);
+      color: var(--yellow);
+      font-weight: 800; font-size: 0.9rem;
+      padding: 0.4rem 1.2rem; border-radius: 50px;
+      margin-bottom: 1.5rem;
+      animation: fadeDown 0.7s ease both;
+    }
+    .hero h1 {
+      font-family: 'Baloo 2', cursive;
+      font-size: clamp(2.4rem, 7vw, 5rem);
+      font-weight: 800;
+      color: white;
+      line-height: 1.1;
+      animation: fadeDown 0.7s 0.1s ease both;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--yellow);
+      position: relative;
+    }
+    .hero h1 em::after {
+      content: '';
+      position: absolute; bottom: -4px; left: 0; right: 0;
+      height: 4px;
+      background: var(--yellow);
+      border-radius: 2px;
+    }
+    .hero-sub {
+      font-size: 1.2rem; font-weight: 600;
+      color: rgba(255,255,255,0.75);
+      margin: 1.2rem 0 2rem;
+      animation: fadeDown 0.7s 0.2s ease both;
+    }
+    .hero-stats {
+      display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+      animation: fadeDown 0.7s 0.3s ease both;
+    }
+    .stat-pill {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 16px;
+      padding: 0.9rem 1.5rem;
+      text-align: center;
+    }
+    .stat-pill .num {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.8rem; font-weight: 800;
+      color: var(--yellow);
+    }
+    .stat-pill .label { color: rgba(255,255,255,0.7); font-size: 0.8rem; font-weight: 700; }
+    .hero-btns {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+      animation: fadeDown 0.7s 0.4s ease both;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800; font-size: 1rem;
+      padding: 0.85rem 2rem; border-radius: 50px;
+      text-decoration: none; cursor: pointer; border: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.25); }
+    .btn-primary { background: var(--yellow); color: var(--navy); }
+    .btn-outline { background: transparent; color: white; border: 2.5px solid rgba(255,255,255,0.4); }
+    .btn-outline:hover { border-color: white; }
+
+    .hero-scroll {
+      margin-top: 3rem; color: rgba(255,255,255,0.4);
+      font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em;
+      animation: bounce 2s infinite, fadeDown 0.7s 0.6s ease both;
+    }
+
+    @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+    @keyframes fadeDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
+
+    /* ── SECTIONS ── */
+    section { position: relative; z-index: 1; }
+    .section-label {
+      font-size: 0.8rem; font-weight: 800; letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--orange); margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800;
+      color: var(--navy); line-height: 1.2;
+    }
+    .section-title span { color: var(--blue); }
+
+    /* ── WHY ── */
+    .why {
+      padding: 5rem 2rem;
+      background: var(--white);
+    }
+    .why-inner { max-width: 1100px; margin: 0 auto; }
+    .why-header { text-align: center; margin-bottom: 3.5rem; }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+    .why-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      border: 2px solid transparent;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+      text-align: center;
+    }
+    .why-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
+    .why-card:nth-child(1):hover { border-color: var(--yellow); }
+    .why-card:nth-child(2):hover { border-color: var(--green); }
+    .why-card:nth-child(3):hover { border-color: var(--pink); }
+    .why-card:nth-child(4):hover { border-color: var(--blue); }
+    .why-icon {
+      width: 64px; height: 64px; border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; margin: 0 auto 1rem;
+    }
+    .ic-yellow { background: #FFF3C4; }
+    .ic-green  { background: #C4FFF0; }
+    .ic-pink   { background: #FFD6E7; }
+    .ic-blue   { background: #D6E4FF; }
+    .why-card h3 { font-family: 'Baloo 2', cursive; font-size: 1.2rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .why-card p  { font-size: 0.95rem; color: #555; line-height: 1.6; }
+
+    /* ── CLASSES ── */
+    .classes {
+      padding: 5rem 2rem;
+      background: linear-gradient(180deg, #f0f4ff 0%, #fff8e7 100%);
+    }
+    .classes-inner { max-width: 1100px; margin: 0 auto; }
+    .classes-header { text-align: center; margin-bottom: 3.5rem; }
+    .classes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
+    }
+    .class-card {
+      background: white;
+      border-radius: 20px;
+      padding: 1.8rem 1.2rem;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .class-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 5px;
+    }
+    .class-card:nth-child(1)::before { background: var(--yellow); }
+    .class-card:nth-child(2)::before { background: var(--green); }
+    .class-card:nth-child(3)::before { background: var(--pink); }
+    .class-card:nth-child(4)::before { background: var(--blue); }
+    .class-card:nth-child(5)::before { background: var(--orange); }
+    .class-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.13); }
+    .class-num {
+      font-family: 'Baloo 2', cursive;
+      font-size: 2.5rem; font-weight: 800;
+      color: var(--navy); line-height: 1;
+    }
+    .class-label { font-size: 0.85rem; color: #888; font-weight: 700; margin-top: 0.3rem; }
+    .class-tag {
+      display: inline-block;
+      margin-top: 0.8rem;
+      padding: 0.25rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.75rem; font-weight: 800;
+      background: #f0f4ff; color: var(--blue);
+    }
+
+    /* ── REVIEWS ── */
+    .reviews {
+      padding: 5rem 2rem;
+      background: var(--navy);
+      overflow: hidden;
+    }
+    .reviews-inner { max-width: 1100px; margin: 0 auto; }
+    .reviews-header { text-align: center; margin-bottom: 3.5rem; }
+    .reviews-header .section-title { color: white; }
+    .reviews-header .section-title span { color: var(--yellow); }
+    .reviews-header .section-label { color: var(--green); }
+    .rating-hero {
+      display: flex; align-items: center; justify-content: center; gap: 1.5rem;
+      margin-bottom: 3rem; flex-wrap: wrap;
+    }
+    .rating-big {
+      font-family: 'Baloo 2', cursive;
+      font-size: 5rem; font-weight: 800;
+      color: var(--yellow); line-height: 1;
+    }
+    .rating-info { text-align: left; }
+    .stars { font-size: 1.6rem; letter-spacing: 2px; color: var(--yellow); }
+    .rating-count { color: rgba(255,255,255,0.6); font-weight: 700; margin-top: 0.3rem; }
+
+    .reviews-track-wrap { overflow: hidden; position: relative; }
+    .reviews-track-wrap::before,
+    .reviews-track-wrap::after {
+      content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2;
+      pointer-events: none;
+    }
+    .reviews-track-wrap::before { left: 0; background: linear-gradient(to right, var(--navy), transparent); }
+    .reviews-track-wrap::after  { right:0; background: linear-gradient(to left,  var(--navy), transparent); }
+
+    .reviews-track {
+      display: flex; gap: 1.5rem;
+      animation: scrollTrack 30s linear infinite;
+      width: max-content;
+    }
+    .reviews-track:hover { animation-play-state: paused; }
+    @keyframes scrollTrack { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    .review-card {
+      background: rgba(255,255,255,0.07);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 1.5rem;
+      width: 300px; flex-shrink: 0;
+    }
+    .review-stars { font-size: 1rem; color: var(--yellow); margin-bottom: 0.8rem; }
+    .review-text {
+      color: rgba(255,255,255,0.85);
+      font-size: 0.92rem; line-height: 1.65;
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+    .review-author {
+      font-weight: 800; color: white; font-size: 0.9rem;
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      padding: 5rem 2rem;
+      background: white;
+    }
+    .about-inner {
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .about-visual {
+      display: flex; flex-direction: column; align-items: center; gap: 1rem;
+    }
+    .about-avatar {
+      width: 180px; height: 180px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--navy));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem;
+      box-shadow: 0 0 0 8px #e8edff, 0 0 0 16px #c4d2ff;
+      animation: pulse 3s ease infinite;
+    }
+    @keyframes pulse {
+      0%,100%{box-shadow:0 0 0 8px #e8edff,0 0 0 16px #c4d2ff}
+      50%{box-shadow:0 0 0 12px #d6e4ff,0 0 0 24px #e8edff}
+    }
+    .about-chips { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; }
+    .chip {
+      padding: 0.3rem 0.9rem; border-radius: 50px;
+      font-size: 0.8rem; font-weight: 800;
+      background: #f0f4ff; color: var(--blue);
+    }
+    .about-text h2 { margin-bottom: 1rem; }
+    .about-text p { color: #555; line-height: 1.75; margin-bottom: 1rem; font-size: 0.97rem; }
+    .about-text .highlight {
+      background: linear-gradient(to right, #fff3c4, #ffe080);
+      border-left: 4px solid var(--yellow);
+      border-radius: 0 12px 12px 0;
+      padding: 0.8rem 1rem;
+      font-style: italic; font-weight: 700;
+      color: var(--navy);
+      margin: 1.5rem 0;
+    }
+
+    /* ── CONTACT ── */
+    .contact {
+      padding: 5rem 2rem;
+      background: linear-gradient(135deg, #fff8e7, #f0f4ff);
+    }
+    .contact-inner { max-width: 900px; margin: 0 auto; }
+    .contact-header { text-align: center; margin-bottom: 3.5rem; }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+    }
+    .contact-card {
+      background: white; border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    }
+    .contact-card h3 {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.2rem; font-weight: 800; margin-bottom: 1.2rem;
+      color: var(--navy);
+    }
+    .contact-row {
+      display: flex; align-items: flex-start; gap: 0.8rem;
+      margin-bottom: 1.1rem;
+    }
+    .contact-icon {
+      width: 40px; height: 40px; border-radius: 12px;
+      background: #f0f4ff; display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+    .contact-info .label { font-size: 0.75rem; font-weight: 800; color: #999; text-transform: uppercase; letter-spacing: 0.08em; }
+    .contact-info .val { font-weight: 700; color: var(--navy); font-size: 0.97rem; }
+    .contact-info a { color: var(--blue); text-decoration: none; }
+    .contact-info a:hover { text-decoration: underline; }
+
+    .map-embed {
+      border-radius: 16px; overflow: hidden;
+      border: 3px solid #e8edff;
+      height: 220px;
+    }
+    .map-embed iframe { width: 100%; height: 100%; border: none; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.9rem; font-weight: 600;
+    }
+    footer .footer-logo {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.5rem; font-weight: 800;
+      color: var(--yellow); margin-bottom: 0.5rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav ul { display: none; }
+      .about-inner { grid-template-columns: 1fr; text-align: center; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Floating math background -->
+<div class="math-bg" id="mathBg"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <span>✏️</span> Vishal Sir's<span class="dot">.</span>
+  </div>
+  <ul>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#classes">Classes</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">⭐ 4.9 Rating · 168 Reviews</div>
+    <h1>Maths Isn't Hard.<br/>You Just Need <em>Vishal Sir</em>!</h1>
+    <p class="hero-sub">Etawah's most loved Maths coaching for Classes 6–10</p>
+    <div class="hero-stats">
+      <div class="stat-pill">
+        <div class="num">4.9⭐</div>
+        <div class="label">Google Rating</div>
+      </div>
+      <div class="stat-pill">
+        <div class="num">168+</div>
+        <div class="label">Happy Students</div>
+      </div>
+      <div class="stat-pill">
+        <div class="num">6th–10th</div>
+        <div class="label">All Classes</div>
+      </div>
+      <div class="stat-pill">
+        <div class="num">∞</div>
+        <div class="label">Concepts Cleared</div>
+      </div>
+    </div>
+    <div class="hero-btns">
+      <a href="tel:+918909554666" class="btn btn-primary">📞 Call Now: 089095 54666</a>
+      <a href="#contact" class="btn btn-outline">📍 Find Us</a>
+    </div>
+    <div class="hero-scroll">▼ &nbsp; scroll to explore</div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" id="why">
+  <div class="why-inner">
+    <div class="why-header">
+      <div class="section-label">✨ Why Students Love Us</div>
+      <h2 class="section-title">Learning Maths Should Be <span>Fun!</span></h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon ic-yellow">💡</div>
+        <h3>Concept-First Teaching</h3>
+        <p>Forget rote learning. Vishal Sir builds rock-solid concepts so you can solve any problem — seen or unseen.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon ic-green">🎯</div>
+        <h3>Simple & Clear Explanations</h3>
+        <p>Even the toughest topics become easy when explained in Vishal Sir's unique, student-friendly style.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon ic-pink">❤️</div>
+        <h3>Personal Attention</h3>
+        <p>Small batches ensure every student gets individual focus. No one is left behind in this classroom.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon ic-blue">📈</div>
+        <h3>Proven Results</h3>
+        <p>Students consistently see massive improvement in their scores, confidence, and love for Mathematics.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLASSES -->
+<section class="classes" id="classes">
+  <div class="classes-inner">
+    <div class="classes-header">
+      <div class="section-label">📚 Batches Available</div>
+      <h2 class="section-title">We Teach <span>Classes 6 to 10</span></h2>
+    </div>
+    <div class="classes-grid">
+      <div class="class-card">
+        <div class="class-num">6th</div>
+        <div class="class-label">Class</div>
+        <div class="class-tag">Foundation</div>
+      </div>
+      <div class="class-card">
+        <div class="class-num">7th</div>
+        <div class="class-label">Class</div>
+        <div class="class-tag">Building Up</div>
+      </div>
+      <div class="class-card">
+        <div class="class-num">8th</div>
+        <div class="class-label">Class</div>
+        <div class="class-tag">Key Stage</div>
+      </div>
+      <div class="class-card">
+        <div class="class-num">9th</div>
+        <div class="class-label">Class</div>
+        <div class="class-tag">Board Prep</div>
+      </div>
+      <div class="class-card">
+        <div class="class-num">10th</div>
+        <div class="class-label">Class</div>
+        <div class="class-tag">Board Exams 🏆</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="reviews-inner">
+    <div class="reviews-header">
+      <div class="section-label">💬 What Students Say</div>
+      <h2 class="section-title">Loved by <span>168+ Students</span></h2>
+    </div>
+    <div class="rating-hero">
+      <div class="rating-big">4.9</div>
+      <div class="rating-info">
+        <div class="stars">★★★★★</div>
+        <div class="rating-count">168 Google Reviews</div>
+      </div>
+    </div>
+
+    <!-- scrolling reviews -->
+    <div class="reviews-track-wrap">
+      <div class="reviews-track" id="reviewTrack">
+        <!-- cards injected by JS -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-visual">
+      <div class="about-avatar">👨‍🏫</div>
+      <div class="about-chips">
+        <span class="chip">Mathematics Expert</span>
+<span class="chip">Etawah's Favourite</span>
+        <span class="chip">Result-Oriented</span>
+      </div>
+    </div>
+    <div class="about-text">
+      <div class="section-label">👋 Meet the Teacher</div>
+      <h2 class="section-title">About <span>Vishal Sir</span></h2>
+      <p>Vishal Sir runs one of Etawah's most trusted and result-oriented maths coaching institutes. With a teaching style that is both unique and deeply effective, he has helped hundreds of students go from dreading maths to loving it.</p>
+      <div class="highlight">"Truly, a amazing teacher is hard to find — and impossible to forget." — Student Review</div>
+      <p>Located in the heart of Etawah at Tulsi Nagar, Friends Colony, the classes are warm, welcoming, and designed for every kind of learner.</p>
+      <a href="tel:+918909554666" class="btn btn-primary" style="margin-top:1rem;">📞 Call to Enrol</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-header">
+      <div class="section-label">📍 Find Us</div>
+      <h2 class="section-title">Come Visit <span>Our Classes</span></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>🗺️ Contact Info</h3>
+        <div class="contact-row">
+          <div class="contact-icon">📞</div>
+          <div class="contact-info">
+            <div class="label">Phone</div>
+            <div class="val"><a href="tel:+918909554666">089095 54666</a></div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">📍</div>
+          <div class="contact-info">
+            <div class="label">Address</div>
+            <div class="val">Army Canteen Road, near Balaji Sweets,<br/>Tulsi Nagar, Friends Colony,<br/>Etawah, UP 206001</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">🕐</div>
+          <div class="contact-info">
+            <div class="label">Timings</div>
+            <div class="val">Opens 3:30 PM<br/>Mon–Sat</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">🌐</div>
+          <div class="contact-info">
+            <div class="label">Facebook</div>
+            <div class="val"><a href="https://facebook.com" target="_blank">Find us on Facebook</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <h3>📌 Location on Map</h3>
+        <div class="map-embed">
+          <iframe
+            src="https://maps.google.com/maps?q=Army+Canteen+Road,+Tulsi+Nagar,+Friends+Colony,+Etawah,+Uttar+Pradesh+206001&output=embed"
+            allowfullscreen loading="lazy">
+          </iframe>
+        </div>
+        <a href="https://maps.app.goo.gl/XiqSkmtDKdV1oHk26" target="_blank" class="btn btn-primary" style="margin-top:1.2rem;width:100%;justify-content:center;">
+          🗺️ Open in Google Maps
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Vishal Sir's Maths Classes</div>
+  <div>Classes 6–10 | 📞 089095 54666</div>
+  <div style="margin-top:0.5rem;">Tulsi Nagar, Friends Colony, Etawah, UP 206001</div>
+</footer>
+
+<script>
+  // ── Floating math symbols ──
+  const symbols = ['+', '−', '×', '÷', '=', 'π', '√', '∑', '²', '³', '%', '∞', 'θ', 'α', 'x', 'y', 'z'];
+  const bg = document.getElementById('mathBg');
+  for (let i = 0; i < 40; i++) {
+    const s = document.createElement('span');
+    s.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    s.style.left = Math.random() * 100 + 'vw';
+    s.style.animationDuration = (12 + Math.random() * 20) + 's';
+    s.style.animationDelay = (Math.random() * 20) + 's';
+    bg.appendChild(s);
+  }
+
+  // ── Reviews carousel ──
+  const reviews = [
+    { name: "Muskan Yadav", text: "Vishal Sir's coaching is one of the most trusted and result-oriented institutes in Etawah. Complex topics are explained in an easy way so every student can understand.", stars: 5 },
+    { name: "Azmat Siddiqui", text: "His teaching style is not just unique — it's magical. Every concept, no matter how difficult, becomes crystal clear under his guidance.", stars: 5 },
+    { name: "Unknown Person", text: "I am finding a lot of improvement after joining. His way of teaching is very clear, simple, and easy to understand. He focuses on building strong concepts.", stars: 5 },
+    { name: "Google Review", text: "Nice coaching for every solution of maths. Vishal Sir is the best teacher.", stars: 5 },
+    { name: "Student Review", text: "Very nice place for students where concept feel. Best coaching in Etawah!", stars: 5 },
+    { name: "Happy Parent", text: "My son's marks jumped after joining Vishal Sir's classes. The personal attention each student gets is remarkable.", stars: 5 },
+    { name: "10th Class Student", text: "Board exams felt easy because Vishal Sir had already covered everything so thoroughly. Highly recommend to all Class 10 students!", stars: 5 },
+    { name: "Class 8 Student", text: "I used to fear maths. Now it's my favourite subject! Thank you Vishal Sir for making it so enjoyable.", stars: 5 },
+  ];
+
+  const track = document.getElementById('reviewTrack');
+  const allReviews = [...reviews, ...reviews]; // duplicate for infinite scroll
+  allReviews.forEach(r => {
+    const card = document.createElement('div');
+    card.className = 'review-card';
+    card.innerHTML = `
+      <div class="review-stars">${'★'.repeat(r.stars)}</div>
+      <div class="review-text">"${r.text}"</div>
+      <div class="review-author">— ${r.name}</div>
+    `;
+    track.appendChild(card);
+  });
+</script>
+</body>
+</html>
