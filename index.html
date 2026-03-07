@@ -220,6 +220,29 @@
     .infra-card h3{font-family:'Baloo 2',cursive;font-size:1.1rem;font-weight:800;color:var(--yellow);margin-bottom:0.5rem;}
     .infra-card p{color:rgba(255,255,255,0.72);font-size:0.88rem;line-height:1.6;}
 
+    /* INFRASTRUCTURE */
+    .infra{padding:5rem 2rem;background:var(--navy);}
+    .infra-inner{max-width:1100px;margin:0 auto;}
+    .infra-inner .section-title{color:white;}
+    .infra-inner .section-title span{color:var(--yellow);}
+    .infra-inner .section-label{color:var(--green);}
+    .infra-inner > .section-header > p{color:rgba(255,255,255,0.7);margin-top:0.8rem;font-size:1rem;}
+    .infra-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.4rem;margin-top:3rem;}
+    .infra-card{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.13);border-radius:20px;padding:1.8rem 1.4rem;text-align:center;transition:transform 0.3s,background 0.3s,border-color 0.3s;position:relative;overflow:hidden;}
+    .infra-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;opacity:0;transition:opacity 0.3s;}
+    .infra-card:hover{transform:translateY(-6px);background:rgba(255,255,255,0.12);}
+    .infra-card:hover::before{opacity:1;}
+    .infra-card:nth-child(1)::before{background:var(--yellow);}
+    .infra-card:nth-child(2)::before{background:var(--green);}
+    .infra-card:nth-child(3)::before{background:var(--pink);}
+    .infra-card:nth-child(4)::before{background:var(--blue);}
+    .infra-card:nth-child(5)::before{background:var(--orange);}
+    .infra-card:nth-child(6)::before{background:var(--yellow);}
+    .infra-card:nth-child(7)::before{background:var(--green);}
+    .infra-icon{font-size:2.8rem;margin-bottom:1rem;display:block;}
+    .infra-card h3{font-family:'Baloo 2',cursive;font-size:1.1rem;font-weight:800;color:var(--yellow);margin-bottom:0.5rem;}
+    .infra-card p{color:rgba(255,255,255,0.72);font-size:0.88rem;line-height:1.6;}
+
     /* ENQUIRY FORM */
     .enquiry{padding:5rem 2rem;background:linear-gradient(135deg,#0d1654 0%,#0A1045 60%,#0d1654 100%);}
     .enquiry-inner{max-width:900px;margin:0 auto;}
@@ -569,86 +592,21 @@
 
 <!-- ENQUIRY -->
 <section class="enquiry" id="enquiry">
-  <div class="enquiry-inner">
+  <div class="enquiry-inner" style="text-align:center;">
     <div class="section-header">
       <div class="section-label">📋 Get In Touch</div>
       <h2 class="section-title">Enquiry <span>Form</span></h2>
+      <p style="color:rgba(255,255,255,0.75);margin-top:0.8rem;font-size:1rem;">Interested in joining Vishal Sir's Maths Classes? Fill out our enquiry form and we'll get back to you shortly!</p>
     </div>
-    <div class="enquiry-wrap">
-      <div class="enquiry-info">
-        <h3>Start Your Maths Journey Today! 🚀</h3>
-        <p>Fill in the form and we'll get back to you shortly. Join hundreds of students who've already transformed their maths skills with Vishal Sir.</p>
-        <ul class="enquiry-bullets">
-          <li>Free demo class available</li>
-          <li>Classes for 8th, 9th &amp; 10th standard</li>
-          <li>Personal attention to every student</li>
-          <li>Smart board &amp; AC classroom</li>
-          <li>Flexible batch timings</li>
-          <li>Regular tests &amp; progress tracking</li>
-        </ul>
-      </div>
-      <div class="enquiry-form-box">
-        <h3>✏️ Book a Free Demo</h3>
-        <div id="enquirySuccess" class="form-success">
-          <h4>🎉 Enquiry Submitted!</h4>
-          <p>Thank you! Your response has been recorded in our system. Vishal Sir's team will contact you soon on your mobile number.</p>
-          <p style="margin-top:0.5rem;font-size:0.82rem;color:#666;">(A confirmation tab may have opened — you can close it.)</p>
-        </div>
-        <div id="enquiryFormBody">
-          <div class="form-row">
-            <div class="form-group">
-              <label>Student Name <span class="required-star">*</span></label>
-              <input type="text" id="f_name" placeholder="Full name" required/>
-            </div>
-            <div class="form-group">
-              <label>Class <span class="required-star">*</span></label>
-              <select id="f_class" required>
-                <option value="">Select class</option>
-                <option value="8th">Class 8th</option>
-                <option value="9th">Class 9th</option>
-                <option value="10th">Class 10th</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Gender <span class="required-star">*</span></label>
-              <select id="f_gender" required>
-                <option value="">Select</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Prefer not to say">Prefer not to say</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Age <span class="required-star">*</span></label>
-              <input type="number" id="f_age" placeholder="e.g. 14" min="10" max="20" required/>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Mobile Number <span class="required-star">*</span></label>
-            <input type="tel" id="f_mobile" placeholder="10-digit mobile number" maxlength="10" required/>
-          </div>
-          <div class="form-group">
-            <label>Email (optional)</label>
-            <input type="email" id="f_email" placeholder="your@gmail.com"/>
-          </div>
-          <div class="form-group">
-            <label>Preferred Visit Time <span class="required-star">*</span></label>
-            <select id="f_time" required>
-              <option value="">Select timing</option>
-              <option value="15:30">3:30 PM</option>
-              <option value="16:00">4:00 PM</option>
-              <option value="16:30">4:30 PM</option>
-              <option value="17:00">5:00 PM</option>
-              <option value="17:30">5:30 PM</option>
-              <option value="18:00">6:00 PM</option>
-            </select>
-          </div>
-          <button class="form-submit-btn" onclick="submitEnquiry()">Submit Enquiry 🚀</button>
-        </div>
-      </div>
+    <div style="margin-top:2.5rem;display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfxP_m5pxNhJS-jOtNJdU-YKlZSXmGj7fiyyKiGXPigmzT4mw/viewform" target="_blank" style="display:inline-flex;align-items:center;gap:0.7rem;background:linear-gradient(135deg,#FFD93D,#FF6B35);color:#0A1045;text-decoration:none;font-family:'Baloo 2',cursive;font-weight:900;font-size:1.15rem;padding:1rem 2.5rem;border-radius:50px;box-shadow:0 8px 30px rgba(255,217,61,0.35);transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 14px 40px rgba(255,217,61,0.5)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 8px 30px rgba(255,217,61,0.35)'">
+        📋 Fill Enquiry Form
+      </a>
+      <a href="https://wa.me/918909554666?text=Hi%20Vishal%20Sir%2C%20I%20want%20to%20enquire%20about%20your%20maths%20classes." target="_blank" style="display:inline-flex;align-items:center;gap:0.7rem;background:linear-gradient(135deg,#25D366,#128C7E);color:white;text-decoration:none;font-family:'Baloo 2',cursive;font-weight:900;font-size:1.15rem;padding:1rem 2.5rem;border-radius:50px;box-shadow:0 8px 30px rgba(37,211,102,0.35);transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 14px 40px rgba(37,211,102,0.5)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 8px 30px rgba(37,211,102,0.35)'">
+        💬 WhatsApp Us Instead
+      </a>
     </div>
+    <p style="color:rgba(255,255,255,0.45);font-size:0.82rem;margin-top:1.5rem;">Opens in a new tab • Takes less than 1 minute to fill</p>
   </div>
 </section>
 
@@ -684,62 +642,6 @@ const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersec
 counters.forEach(c=>obs.observe(c));
 
 
-// Enquiry Form Submission
-function submitEnquiry(){
-  const name=document.getElementById('f_name').value.trim();
-  const cls=document.getElementById('f_class').value;
-  const gender=document.getElementById('f_gender').value;
-  const age=document.getElementById('f_age').value.trim();
-  const mobile=document.getElementById('f_mobile').value.trim();
-  const email=document.getElementById('f_email').value.trim();
-  const time=document.getElementById('f_time').value;
-
-  if(!name){alert('Please enter student name!');return;}
-  if(!cls){alert('Please select class!');return;}
-  if(!gender){alert('Please select gender!');return;}
-  if(!age){alert('Please enter age!');return;}
-  if(!mobile||mobile.length!==10||isNaN(mobile)){alert('Please enter a valid 10-digit mobile number!');return;}
-  if(!time){alert('Please select preferred visit time!');return;}
-
-  const [hour,minute]=time.split(':');
-  const formId='1FAIpQLSfxP_m5pxNhJS-jOtNJdU-YKlZSXmGj7fiyyKiGXPigmzT4mw';
-  const baseUrl='https://docs.google.com/forms/d/e/'+formId+'/formResponse';
-
-  // Build a real HTML form and submit it in a new tab
-  // Google Forms does NOT allow CORS fetch/iframe — the only reliable method is direct form POST
-  const f=document.createElement('form');
-  f.method='POST';
-  f.action=baseUrl;
-  f.target='_blank';
-  f.style.display='none';
-
-  const fields={
-    'entry.1733302791': name,
-    'entry.751740060': cls,
-    'entry.2077234408': gender,
-    'entry.837698664': age,
-    'entry.1548878420': mobile,
-    'entry.354463022': email,
-    'entry.2032720153_hour': hour,
-    'entry.2032720153_minute': minute,
-  };
-
-  Object.entries(fields).forEach(([k,v])=>{
-    if(v){
-      const inp=document.createElement('input');
-      inp.type='hidden';inp.name=k;inp.value=v;
-      f.appendChild(inp);
-    }
-  });
-
-  document.body.appendChild(f);
-  f.submit();
-  document.body.removeChild(f);
-
-  // Show success on the website immediately
-  document.getElementById('enquiryFormBody').style.display='none';
-  document.getElementById('enquirySuccess').style.display='block';
-}
 
 </script>
 </body>
